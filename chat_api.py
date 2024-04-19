@@ -24,20 +24,6 @@ app.add_middleware(
     allow_headers=["*"],  # You can restrict this to specific headers if needed
 )
 
-# # chemin acces portfolio
-# portfolio_path = "index.html"
-
-# def read_html_content():
-#     with open(portfolio_path, "r", encoding="utf-8") as file:
-#         content = file.read()
-#     return content
-
-# def extract_text_from_html(html_content):
-#     soup = BeautifulSoup(html_content, "html.parser")
-#     # Extract text from all the paragraphs in the HTML
-#     paragraphs = soup.find_all('p')
-#     text = " ".join([p.get_text() for p in paragraphs])
-#     return text
 
 @app.get("/test/{prompt}", description="test!")
 def test(prompt):
