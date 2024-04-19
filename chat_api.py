@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from config import API_PY
 
 # Fetch the HTML content from the URL
-response = requests.get("http://localhost:8001")
+response = requests.get("http://soriyab09portfolio-front.francecentral.azurecontainer.io:8001")
 soup = BeautifulSoup(response.content, "html.parser")
 
 app = FastAPI()
@@ -15,7 +15,7 @@ app = FastAPI()
 headers = {"Authorization": f"Bearer {API_PY}"}
 
 
-origins = ["http://localhost", "http://localhost:8001"]
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

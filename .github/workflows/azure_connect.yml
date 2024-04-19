@@ -1,0 +1,54 @@
+on: [push]
+
+name: Run Azure Login With a Service Principal Secret
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: azure acr login
+      run: |
+        az acr login --name soriyab15
+
+    - name: build and push images
+      run: |
+        docker build -t portfolio_front -f Dockerfile_http_server .
+        docker build -t portfolio_back -f Dockerfile .
+        docker tag portfolio_back:latest soriyab09.azurecr.io/portfolio_back:latest
+        docker tag portfolio_front:latest soriyab09.azurecr.io/portfolio_front:latest
+        docker push soriyab09.azurecr.io/portfolio_back:latest
+        docker push soriyab09.azurecr.io/portfolio_front:latest
+    
+    
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az container delete --name soriyab09portfolio-front --resource-group grsoriyab15 --yes
+          az container create --resource-group grsoriyab15 --name soriyab09portfolio-front \
+            --image soriyab09.azurecr.io/portfolio_front:latest \
+            --cpu 1 --memory 1 \
+            --ports 8001 \
+            --dns-name-label soriyab09portfolio-front \
+            --registry-login-server soriyab09.azurecr.io \
+            --registry-username soriyab09 \
+            --registry-password ${{ secrets.AZURE_REGISTRY }}
+
+          az container create --resource-group grsoriyab15 --name soriyab09portfolio-back \
+            --image soriyab09.azurecr.io/portfolio_back:latest \
+            --cpu 1 --memory 1 \
+            --ports 8000 \
+            --dns-name-label soriyab09portfolio-back \
+            --registry-login-server soriyab09.azurecr.io \
+            --registry-username soriyab09 \
+            --registry-password ${{ secrets.AZURE_REGISTRY }}

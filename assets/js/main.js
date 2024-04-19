@@ -32,7 +32,7 @@ function AddQuestion() {
   answerEl.classList.add("chat-reponse")
 
   // Envoyer la question au serveur
-  fetch('http://localhost:8000/' + question, {
+  fetch('http://soriyab09portfolio-back.francecentral.azurecontainer.io:8000/' + question, {
     method: "POST",
     // headers: {"mode": "no-cors"}
   })
