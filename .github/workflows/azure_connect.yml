@@ -19,6 +19,10 @@ jobs:
       run: |
         az acr login --name soriyab15
 
+    - name: docker login
+      run: |
+        docker login
+
     - name: build and push images
       run: |
         docker build -t portfolio_front -f Dockerfile_http_server .
