@@ -5,7 +5,7 @@ import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from bs4 import BeautifulSoup
 from openai import AzureOpenAI
-from config import API_PY, API_AZURE
+from config import API_AZURE
 
 # Fetch the HTML content from the URL
 response = requests.get("http://soriyab09portfolio-front.francecentral.azurecontainer.io:8001")
@@ -13,7 +13,7 @@ soup = BeautifulSoup(response.content, "html.parser")
 
 app = FastAPI()
 
-headers = {"Authorization": f"Bearer {API_PY}"}
+# headers = {"Authorization": f"Bearer {API_PY}"}
 
 
 origins = ["*"]
