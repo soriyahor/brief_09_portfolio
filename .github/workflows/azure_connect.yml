@@ -38,7 +38,7 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "password.eden"
-        replace: ${{ secrets.API_PY }}
+        replace: ${{ secrets.API_AZURE }}
         regex: true
         include: 'config.py'
 

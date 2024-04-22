@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Installez les dépendances Python
-RUN pip install fastapi uvicorn beautifulsoup4 requests
+RUN pip install fastapi uvicorn beautifulsoup4 requests openai
 
 # Exposez le port sur lequel votre application FastAPI fonctionne
 EXPOSE 8000
