@@ -23,12 +23,12 @@ jobs:
       run: |
         docker build -t portfolio_front -f Dockerfile_http_server .
         docker build -t portfolio_back -f Dockerfile .
-        docker tag portfolio_back:latest soriyab09.azurecr.io/portfolio_back:latest
         docker tag portfolio_front:latest soriyab09.azurecr.io/portfolio_front:latest
-        docker push soriyab09.azurecr.io/portfolio_back:latest
+        docker tag portfolio_back:latest soriyab09.azurecr.io/portfolio_back:latest
         docker push soriyab09.azurecr.io/portfolio_front:latest
-    
-    
+        docker push soriyab09.azurecr.io/portfolio_back:latest
+
+  
     - name: Azure CLI script
       uses: azure/CLI@v1
       with:
