@@ -17,11 +17,7 @@ jobs:
 
     - name: azure acr login
       run: |
-        az acr login --name soriyab15
-
-    - name: docker login
-      run: |
-        docker login soriyab15.azurecr.io -u soriyab15 -p ${{ secrets.AZURE_REGISTRY }}
+        az acr login --name soriyab09
 
     - name: build and push images
       run: |
