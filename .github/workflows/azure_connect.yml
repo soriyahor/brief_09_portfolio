@@ -19,6 +19,16 @@ jobs:
       run: |
         az acr login --name soriyab09
 
+    
+
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: "password.eden"
+        replace: ${{ secrets.API_PY }}
+        regex: true
+        include: 'config.py'
+
     - name: build and push images
       run: |
         docker build -t portfolio_front -f Dockerfile_http_server .
