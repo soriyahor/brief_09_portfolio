@@ -44,6 +44,7 @@ jobs:
             --registry-username soriyab09 \
             --registry-password ${{ secrets.AZURE_REGISTRY }}
 
+          az container delete --name soriyab09portfolio-back --resource-group grsoriyab15 --yes
           az container create --resource-group grsoriyab15 --name soriyab09portfolio-back \
             --image soriyab09.azurecr.io/portfolio_back:latest \
             --cpu 1 --memory 1 \
