@@ -33,7 +33,9 @@ function AddQuestion() {
 
   // Envoyer la question au serveur
   fetch('http://soriyab09portfolio-back.francecentral.azurecontainer.io:8000/' + question, {
-    method: "POST"})
+    method: "POST",
+    // headers: {"mode": "no-cors"}
+  })
 
     .then(response => {
       return response.json();

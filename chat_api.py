@@ -56,7 +56,7 @@ async def chat(prompt):
 
         client = AzureOpenAI(
             azure_endpoint = "https://openai-lok.openai.azure.com/", 
-            api_key= {API_AZURE},  
+            api_key= API_AZURE,  
             api_version="2024-02-15-preview"
         )
 
