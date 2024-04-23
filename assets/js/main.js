@@ -14,35 +14,35 @@
     chatbox.classList.toggle("enlarged");
   }
 
-  function AddQuestion() {
-    let question = prompt("quelle est ta question ?");
-    let chatbotEL = document.getElementById("chatbox");
-  
-    // Créer un objet avec la question
-    let message = {
-      prompt: question
-    };
-  
-    // Envoyer la question au serveur
-    fetch('http://soriyab09portfolio-back.francecentral.azurecontainer.io:8000/', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(message)
-    })
+function AddQuestion() {
+  let question = prompt("quelle est ta question ?");
+  let chatbotEL = document.getElementById("chatbox");
+  console.log(chatbotEL);
+
+  // Créer un élément pour afficher la question
+  let questionEl = document.createElement("p");
+  questionEl.innerText = "ma question : " + question;
+  console.log(questionEl);
+  chatbotEL.appendChild(questionEl);
+  questionEl.classList.add("chat-message")
+
+  // Créer un élément pour afficher la réponse
+  let answerEl = document.createElement("p");
+  chatbotEL.appendChild(answerEl);
+  answerEl.classList.add("chat-reponse")
+
+  // Envoyer la question au serveur
+  fetch('http://soriyab09portfolio-back.francecentral.azurecontainer.io:8000/' + question, {
+    method: "POST"})
+
     .then(response => {
       return response.json();
     })
     .then(data => {
       // Afficher la réponse
-      let answerEl = document.createElement("p");
       answerEl.innerText = "ma reponse : " + data;
-      chatbotEL.appendChild(answerEl);
-      answerEl.classList.add("chat-reponse");
     });
-  }
-  
+}
 
 // Fin chatbox
 
