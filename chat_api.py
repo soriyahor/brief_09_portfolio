@@ -60,10 +60,11 @@ async def chat(prompt):
             api_version="2024-02-15-preview",
         )
 
-        message_text = [{"role":"system","content":"You are an AI assistant that helps people find information. You know this :{data}."},{"role": "user", "content": f"{prompt}"}]
+        message_text = [{"role":"system","content":f"You are an AI assistant that helps people find information. You know this :{data}."},
+                        {"role": "user", "content": f"{prompt}"}]
 
         completion = client.chat.completions.create(
-            model="gpt35-latest", # model = "deployment_name"
+            model="paulinegpt4", # model = "deployment_name"
             messages = message_text,
             temperature=0.7,
             max_tokens=800,
