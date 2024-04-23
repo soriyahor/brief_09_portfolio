@@ -55,9 +55,9 @@ async def chat(prompt):
 
 
         client = AzureOpenAI(
-            azure_endpoint = "https://openai-lok.openai.azure.com/", 
-            api_key= {API_AZURE},  
-            api_version="2024-02-15-preview"
+            azure_endpoint="https://pauline-openai.openai.azure.com/",
+            api_key=API_AZURE,
+            api_version="2024-02-15-preview",
         )
 
         message_text = [{"role":"system","content":"You are an AI assistant that helps people find information. You know this :{data}."},{"role": "user", "content": f"{prompt}"}]
